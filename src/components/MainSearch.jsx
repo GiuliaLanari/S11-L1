@@ -45,12 +45,12 @@ const MainSearch = () => {
             <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
-        <Col xs={10} className="mx-auto mb-5 d-flex">
+        <Col xs={10} className="mx-auto mb-5">
           {jobs.map((jobData) => (
             <div key={jobData._id}>
               <Job data={jobData}> </Job>
               <Button
-                className="d-flex align-items-center"
+                className="d-flex align-items-center mt-0 mb-5"
                 onClick={() => {
                   dispatch({
                     type: "ADD_TO_PREFERITI",

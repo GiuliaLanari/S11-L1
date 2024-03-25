@@ -16,14 +16,18 @@ const Favourites = () => {
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Favourites Jobs:</h1>
-          <Link to="/" className="btn btn-outline-info">
-            Home
-          </Link>
+          <div className="d-flex">
+            <Link to="/" className="btn btn-outline-info">
+              Home
+            </Link>
+          </div>
+        </Col>
+        <Col xs={10} className="mx-auto my-3">
           <ul style={{ listStyle: "none" }}>
             {jobsPreferiti.map((job, i) => (
-              <li key={i} className="my-4">
+              <li key={i} className="my-4 d-flex  justify-content-between align-items-center">
                 {job.title}
-                {job.url}
+                {job.company_name}
                 <>
                   <Button
                     variant="danger"
