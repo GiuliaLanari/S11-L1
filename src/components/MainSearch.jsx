@@ -3,6 +3,7 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import Job from "./Job";
 import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
@@ -35,13 +36,16 @@ const MainSearch = () => {
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1 className="display-1">Remote Jobs Search</h1>
+          <Link to="/favourites" className="btn btn-outline-success">
+            All preferited
+          </Link>
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
             <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
-        <Col xs={10} className="mx-auto mb-5">
+        <Col xs={10} className="mx-auto mb-5 d-flex">
           {jobs.map((jobData) => (
             <div key={jobData._id}>
               <Job data={jobData}> </Job>
@@ -50,7 +54,7 @@ const MainSearch = () => {
                 onClick={() => {
                   dispatch({
                     type: "ADD_TO_PREFERITI",
-                    payload: jobData.id,
+                    payload: jobData,
                   });
                 }}
               >
