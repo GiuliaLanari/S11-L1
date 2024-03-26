@@ -1,35 +1,39 @@
-import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import Job from "./Job";
 import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToPreferitiAction } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
   const dispatch = useDispatch();
-  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
-
+  // const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+  const jobs = useSelector((state) => state.search.searchJobs);
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const response = await fetch(baseEndpoint + query + "&limit=20");
-      if (response.ok) {
-        const { data } = await response.json();
-        setJobs(data);
-      } else {
-        alert("Error fetching results");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(baseEndpoint + query + "&limit=20");
+  //     if (response.ok) {
+  //       const { data } = await response.json();
+  //       setJobs(data);
+  //     } else {
+  //       alert("Error fetching results");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Container>
@@ -52,10 +56,7 @@ const MainSearch = () => {
               <Button
                 className="d-flex align-items-center mt-0 mb-5"
                 onClick={() => {
-                  dispatch({
-                    type: "ADD_TO_PREFERITI",
-                    payload: jobData,
-                  });
+                  dispatch(addToPreferitiAction(jobData));
                 }}
               >
                 Add to preferited

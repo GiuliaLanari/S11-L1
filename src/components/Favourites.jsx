@@ -1,14 +1,14 @@
 import Button from "react-bootstrap/Button";
-
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Container } from "react-bootstrap";
+import { deleteFromPreferiti } from "../redux/actions";
 
 const Favourites = () => {
   const jobsPreferiti = useSelector((state) => {
-    return state.jobs.preferiti;
+    return state.job.preferiti;
   });
   const dispatch = useDispatch();
   return (
@@ -32,10 +32,7 @@ const Favourites = () => {
                   <Button
                     variant="danger"
                     onClick={() => {
-                      dispatch({
-                        type: "DELETE_FROM_PREFERITI",
-                        payload: i,
-                      });
+                      dispatch(deleteFromPreferiti(i));
                     }}
                   >
                     Cancella
