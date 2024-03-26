@@ -24,14 +24,19 @@ const MainSearch = () => {
     e.preventDefault();
     dispatch(getJobsAction(query));
   };
-
+  const content = useSelector((state) => {
+    return state.job.preferiti.length;
+  });
   return (
     <Container>
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1 className="display-1">Remote Jobs Search</h1>
-          <Link to="/favourites" className="btn btn-outline-success">
+          <Link to="/favourites" className="btn btn-outline-success position-relative">
             All preferited
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {content}
+            </span>
           </Link>
         </Col>
         <Col xs={10} className="mx-auto">
