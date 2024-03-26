@@ -9,7 +9,7 @@ const resoultsJobSearch = function (state = initialState, action) {
     case GET_JOBS:
       return {
         ...state,
-        search: action.payload,
+        searchJobs: action.payload,
       };
     default:
       return state;
